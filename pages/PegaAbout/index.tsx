@@ -1,15 +1,33 @@
-// components/AboutUs.tsx
 import React from "react";
 import Image from "next/image";
 import styles from "./PagaAbout.module.css";
 
 const logos = [
-  "/logos/gmp.png",
-  "/logos/dwp.png",
-  "/logos/tahg.png",
-  "/logos/aedas.png",
-  "/logos/nihon.png",
-  "/logos/thi.png",
+  "/assets/images/Logo/Bim-group-1.png",
+  "/assets/images/Logo/Bitexco.png",
+  "/assets/images/Logo/CANOPY SANDS.png",
+  "/assets/images/Logo/CDC HA NOI.png",
+  "/assets/images/Logo/Ciputra.png",
+  "/assets/images/Logo/dwp.png",
+  "/assets/images/Logo/Ecopark.png",
+  "/assets/images/Logo/Gamuda_Berhad_Logo.png",
+  "/assets/images/Logo/gensler-logo-png-transparent@2x (1).png",
+  "/assets/images/Logo/GMP.png",
+  "/assets/images/Logo/HIM LAM.png",
+  "/assets/images/Logo/HTT GROUP.png",
+  "/assets/images/Logo/kume sekkei.png",
+  "/assets/images/Logo/Lac Hong.png",
+  "/assets/images/Logo/LOGO_login.png",
+  "/assets/images/Logo/MIK group.png",
+  "/assets/images/Logo/nihon sekkei.png",
+  "/assets/images/Logo/PRINCE HOLDING GROUP.png",
+  "/assets/images/Logo/Sun group.png",
+  "/assets/images/Logo/Sunshine group.png",
+  "/assets/images/Logo/TAHG.png",
+  "/assets/images/Logo/tasco.png",
+  "/assets/images/Logo/thurlow.png",
+  "/assets/images/Logo/Vinhomes.png",
+  "/assets/images/Logo/VSIP.png",
 ];
 
 const clients = [
@@ -98,7 +116,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Hình ảnh minh họa bên dưới */}
+      {/* Hình ảnh minh họa */}
       <div className={styles.imageGrid}>
         {["bathroom_sang.jpg", "bathroom_toi.jpg", "bedroom_sang.jpg"].map(
           (img, idx) => (
@@ -130,7 +148,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Clients Projects Section */}
+      {/* International Clients Section */}
       <div className={styles.clientsSection}>
         <div className={styles.clientsContainer}>
           <div className={styles.clientsTitle}>
@@ -149,6 +167,8 @@ const AboutUs = () => {
           </ul>
         </div>
       </div>
+
+      {/* Logo slider again */}
       <div className={styles.logoSlider}>
         <div className={styles.logoTrack}>
           {[...logos, ...logos].map((logo, idx) => (
@@ -163,8 +183,60 @@ const AboutUs = () => {
           ))}
         </div>
       </div>
+
+      {/* Domestic Clients Section */}
+      <div className={styles.domesticSection}>
+        <div className={styles.domesticContainer}>
+          <div className={styles.domesticLeft}>
+            <h2>
+              <span className={styles.bigLetter}>D</span>omestic{" "}
+              <span className={styles.lightText}>Clients</span>
+            </h2>
+            <p className={styles.lightText}>and Projects</p>
+          </div>
+          <div className={styles.domesticRight}>
+            <ul>
+              <li>
+                <span className={styles.highlight}>* Vihajico JSC</span> – Ecopark Urban City.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Bitexco Group</span> – The Manor Central Park – The Manor Hue – The Manor Tower Lao Cai.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Vinhomes, VinGroup</span> – Vinhomes Sky Lake – Vinhomes Me Tri – Vinhomes Riverside – Vinhomes Star City.
+              </li>
+              <li>
+                <span className={styles.highlight}>* BIM Group</span> – Hung Thang Urban City – Intercontinental Phu Quoc – Intercontinental Ha Long – Sailing Club Villa Ha Long – Samples Villas of its sub-project.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Hanoi People Committe</span> – Hanoi Nhat Tan Noi Bai Masterplan – Hanoi High-rise Limitation Study Masterplan.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Gamuda Land Vietnam</span> – Gamuda Garden Masterplan and its sub-projects.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Sun Group</span> – Tu Lien Bridge – Sun City – South Phu Quoc Masterplan – An Thoi Masterplan – Sun Premier Village Primavera.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Star Lake Development</span> – Star Lake Master Plan – Samples Villas of its sub-project.
+              </li>
+              <li>
+                <span className={styles.highlight}>* Alma, Israel</span> – Alma Resort.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div className={styles.domesticImageWrapper}>
+  <img
+    src="/assets/images/cty.jpg"
+    alt="Decorative"
+    className={styles.domesticImage}
+  />
+</div>
     </section>
   );
 };
 
 export default AboutUs;
+

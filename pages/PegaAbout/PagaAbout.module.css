@@ -1,3 +1,4 @@
+/* === Hero Section === */
 .heroSection {
   background-image: url("/background-pattern.png");
   background-size: cover;
@@ -50,6 +51,7 @@
   gap: 1.5rem;
 }
 
+/* === Image Grid === */
 .imageGrid {
   margin-top: 2rem;
   padding: 0 2rem;
@@ -78,6 +80,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* === Logo Slider === */
 .logoSlider {
   margin-top: 4rem;
   background-color: white;
@@ -114,14 +117,16 @@
   }
 }
 
-/* ==== Clients Projects Section ==== */
-
+/* === Clients Projects Section === */
 .clientsSection {
   background-color: rgba(63, 106, 135, 0.95);
   padding: 4rem 2rem;
   margin-top: 4rem;
   display: flex;
   justify-content: center;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .clientsContainer {
@@ -169,4 +174,100 @@
 .clientsList span {
   color: #ffc107;
   font-weight: 600;
+}
+
+/* === Domestic Section === */
+.domesticSection {
+  background-color: rgba(63, 106, 135, 0.95);
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.domesticContainer {
+  display: flex;
+  flex-direction: column;
+  max-width: 72rem;
+  width: 100%;
+  gap: 2rem;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .domesticContainer {
+    flex-direction: row;
+  }
+}
+
+.domesticLeft {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: left;
+}
+
+.domesticLeft h2 {
+  font-size: 1.875rem;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.domesticLeft p {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-top: 0.5rem;
+}
+
+.bigLetter {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffc107;
+}
+
+.lightText {
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.domesticRight {
+  flex: 2;
+}
+
+.domesticRight ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.domesticRight li {
+  color: #ffffff;
+}
+
+.highlight {
+  color: #ffc107;
+  font-weight: 600;
+}
+.domesticImageWrapper {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.domesticImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
