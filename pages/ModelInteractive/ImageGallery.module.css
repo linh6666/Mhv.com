@@ -1,0 +1,120 @@
+.simpleGrid {
+  padding: 40px;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.image {
+  height: 625px;
+  object-fit: contain;
+  display: block;
+  width: 100%;
+}
+
+.floorOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.floorOverlay.show {
+  opacity: 1;
+}
+
+.floorOverlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.overlayText {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: #123d47;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.overlayText1,
+.overlayText2 {
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.keyAreas {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.keyAreasTitle {
+  color: #123d47;
+  font-size: 35px;
+}
+
+.keyAreaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.keyAreaItemText {
+  font-size: 25px;
+  color: #123d47;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.keyAreaItem:hover .keyAreaItemText,
+.keyAreaItem:active .keyAreaItemText {
+  color: #bb8d38;
+}
+
+@media (max-width: 768px) {
+  .simpleGrid {
+    display: block;
+    padding: 20px;
+  }
+
+  .keyAreas {
+    align-items: center;
+    text-align: center;
+  }
+
+  .keyAreaItem {
+    justify-content: center;
+  }
+
+  .keyAreaItemText {
+    font-size: 18px;
+  }
+
+  .image {
+    height: 350px;
+    margin: 0 auto 20px auto;
+  }
+
+  /* Cập nhật font-size cho overlayText ở bản mobile */
+  .overlayText1,
+  .overlayText2 {
+    font-size: 14px; /* Giảm font-size cho bản mobile */
+  }
+}

@@ -1,0 +1,171 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.box-item {
+  background: linear-gradient(
+    to bottom,
+    #f1f2f3 0px,
+    #f1f2f3 25px,
+    #294b61 25px,
+    #294b61 100%
+  );
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.img-box {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-box {
+  padding: 20px 24px;
+  color: #ffffff;
+}
+
+.detail-box h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.detail-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.options {
+  margin-top: 12px;
+}
+
+.options a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+.options a:hover {
+  color: #d0d0d0;
+}
+
+.icon-link {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icon-link svg {
+  background-color: #bb8d38;
+  color: #fff;
+  border-radius: 50%;
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-link:hover svg {
+  transform: translateX(4px);
+  background-color: #a47a2d;
+}
+
+.btn-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-box a {
+  background-color: #a47a2d;
+  border-radius: 45px;
+  color: #fff;
+  padding: 10px 30px;
+  display: inline-block;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-box a:hover {
+  background-color: #8f6725;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: #294b61;
+}
+
+/* -------- FILTERS MENU -------- */
+.filters_menu {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.filters_menu li {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #294b61;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.filters_menu li:hover {
+  background-color: rgba(41, 75, 97, 0.1);
+}
+
+.filters_menu li.active {
+  background-color: #294b61;
+  color: #fff;
+  border-radius: 10px;
+  border: 1px solid #294b61;
+}
+
+/* --- Mobile responsive for filters --- */
+@media (max-width: 576px) {
+  .filters_menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .filters_menu li {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

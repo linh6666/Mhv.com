@@ -19,8 +19,18 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--clr-bg-primary-gray);
+  a {
+    text-decoration: none;
+  }
+}
+.noScroll {
+  overflow: hidden;
+}
+@media only screen and (min-width: 801px) {
+  .noScroll {
+    overflow: scroll;
+  }
 }

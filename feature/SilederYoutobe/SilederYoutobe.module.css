@@ -1,0 +1,33 @@
+.container {
+  padding-top: 40px; /* đẩy xuống tránh bị header che */
+  padding-bottom: 20px;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  color: #294b61;
+  margin-bottom: 30px;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 576px) {
+  .container {
+    padding-top: 40px; /* trên mobile header có thể to hơn */
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+.container1 {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
