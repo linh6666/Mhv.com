@@ -105,7 +105,7 @@ export default function ModelInteractive() {
           // Chỉ xử lý click trên mobile
           onTouchEnd={() => setHoveredFloor(null)}
         >
-          <IconDiamonds size={30} color="#123d47" />
+           <div className={styles.diamondShape}></div>
           <Text className={styles.keyAreaItemText}>Residential</Text>
         </Link>
 
@@ -119,7 +119,7 @@ export default function ModelInteractive() {
           onTouchEnd={() => setHoveredFloor(null)}
           style={{ textDecoration: "none" }}
         >
-          <IconDiamonds size={30} color="#123d47" />
+            <div className={styles.diamondShape}></div>
           <Text className={styles.keyAreaItemText}>Commercial</Text>
         </Link>
       </Stack>

@@ -14,7 +14,7 @@ const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
       className={styles.keyAreaItem}
       style={{ textDecoration: "none" }}
     >
-      <IconDiamonds size={30} color="#123d47" />
+      <div className={styles.diamondShape}></div>
       <Text className={styles.keyAreaItemText}>Level {level}</Text>
     </Link>
   );

@@ -14,7 +14,7 @@ const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
       className={styles.keyAreaItem}
       style={{ textDecoration: "none" }}
     >
-      <IconDiamonds size={30} color="#123d47" />
+        <div className={styles.diamondShape}></div>
       <Text className={styles.keyAreaItemText}>Level {level}</Text>
     </Link>
   );
@@ -51,31 +51,87 @@ export default function ResidentialPage() {
           alt="Model"
           className={styles.image}
         />
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="491.678"
+  height="253.96"
+  viewBox="0 0 491.678 253.96"
+  className={styles.svgContainer}
+>
+  <path
+    id="Path_443"
+    data-name="Path 443"
+    d="M20150.461-2839.453v207.245h-274.289v45.716h-216.389V-2817.1h98.543v32.509h247.881v-54.859Z"
+    transform="translate(-19659.283 2839.953)"
+    fill="#84a7a1"
+    stroke="#294b61"
+    strokeWidth="1"
+    opacity="0.6"
+    style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
+  />
+</svg>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="711.121"
+  height="257.008"
+  viewBox="0 0 711.121 257.008"
+  className={styles.svgContainer1}
+>
+  <path
+    id="Path_441"
+    data-name="Path 441"
+    d="M19440.34-2996.917v55.874h219.439v71.114h99.559v85.336h247.881v-52.827h143.242V-3040.6h-143.242v43.685Z"
+    transform="translate(-19439.84 3041.102)"
+    fill="#f4ddb3"
+    stroke="#294b61"
+    strokeWidth="1"
+    opacity="0.6"
+    style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
+  />
+</svg>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="361.646"
+  height="408.377"
+  viewBox="0 0 361.646 408.377"
+  className={styles.svgContainer2}
+>
+  <path
+    id="Path_440"
+    data-name="Path 440"
+    d="M19317.414-2803.321v16.7h18.287v197.085h-256.008v-407.377h360.646v55.875H19220.9v83.3h22.35v54.417Z"
+    transform="translate(-19079.193 2997.417)"
+    fill="#f4ddb3"
+    stroke="#294b61"
+    strokeWidth="1"
+    opacity="0.6"
+    style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
+  />
+</svg>
 
-        {/* SVG đè lên hình */}
-        {/* <svg viewBox="0 0 900 500" className={styles.svgOverlay}>
-          <polygon
-            id="apt-path-accurate"
-            className={styles.floorPolygon}
-            points="
-      60,30   120,20   180,20   240,20   300,20   360,20   420,20   480,20
-      540,20  600,20   660,20   720,20   780,20   840,30   870,60
-      870,180  870,320
-      860,440   820,470   740,470   720,450   660,450   640,470   580,470
-      560,450   500,450   480,470   420,470   400,450   340,450   320,470
-      260,470   240,450   180,450   160,470   80,470   40,440   30,420
-      30,320  30,180
-      40,60
-    "
-          />
-        </svg> */}
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="328.121"
+  height="231.61"
+  viewBox="0 0 328.121 231.61"
+  className={styles.svgContainer3}
+>
+  <path
+    id="Path_442"
+    data-name="Path 442"
+    d="M19658.764-2803.321v215.813h-327.121v-197.085h14.223v-33.525h38.6v33.525h57.906v-18.727Z"
+    transform="translate(-19331.143 2818.618)"
+    fill="#f4ddb3"
+    stroke="#294b61"
+    strokeWidth="1"
+    opacity="0.6"
+    style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
+  />
+</svg>
 
-        {/* Ảnh nổi bật khi hover vào polygon */}
-        {/* <Image
-          src="/assets/images/Levelimg/level-20-21-hover.png"
-          alt="Hover Highlight"
-          className={styles.hoverImage}
-        /> */}
+
+
+      
       </div>
 
       {/* Cột giữa: Status */}

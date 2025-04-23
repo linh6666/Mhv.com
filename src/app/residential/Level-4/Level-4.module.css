@@ -333,3 +333,62 @@
     height: 8px;
   }
 }
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Kích thước ảnh, có thể thay đổi */
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.svgContainer {
+  opacity: .6;
+      pointer-events: none;
+      width: 38%;
+      height: auto;
+      position: absolute;
+      top: 44%;
+      left: 54%;
+  }
+  .svgContainer1 {
+  
+        pointer-events: none;
+        width: 53.5%;
+        height: auto;
+        position: absolute;
+        top: 13%;
+        left: 38%;
+        
+    }
+    .svgContainer2 {
+  
+      pointer-events: none;
+      width: 27%;
+      height: auto;
+      position: absolute;
+      top: 20%;
+      left: 10%;
+      
+  }
+    .svgContainer3 {
+  
+      pointer-events: none;
+      width: 25%;
+      height: auto;
+      position: absolute;
+      top: 48%;
+      left: 29%;
+      
+  }
+  .diamondShape {
+    width: 20px;
+    height: 20px;
+  border: 1px solid #0f2e4d;
+    transform: rotate(45deg);  /* Quay hình thành hình thoi */
+    margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
+    margin-left: 10px;
+  }
+  

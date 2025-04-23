@@ -49,7 +49,7 @@ const KeyAreaItem = ({
       onMouseLeave={() => onHover()}
       style={{ textDecoration: "none" }}
     >
-      <IconDiamonds size={30} color="#123d47" />
+       <div className={styles.diamondShape}></div>
       <Text className={styles.keyAreaItemText}>Level {level}</Text>
     </Link>
   );

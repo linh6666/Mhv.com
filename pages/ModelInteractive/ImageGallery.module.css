@@ -118,3 +118,11 @@
     font-size: 14px; /* Giảm font-size cho bản mobile */
   }
 }
+  .diamondShape {
+  width: 20px;
+  height: 20px;
+border: 1px solid #0f2e4d;
+  transform: rotate(45deg);  /* Quay hình thành hình thoi */
+  margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
+  margin-left: 10px;
+}
