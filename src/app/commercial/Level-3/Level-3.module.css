@@ -341,3 +341,6 @@ border: 1px solid #0f2e4d;
   margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
   margin-left: 10px;
 }
+.currentLevel {
+  color: #bb8d38;
+}

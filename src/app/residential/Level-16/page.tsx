@@ -1,13 +1,13 @@
 "use client";
 import { Image, SimpleGrid, Text, Stack } from "@mantine/core";
-
 import React from "react";
 import Link from "next/link";
-
 import styles from "./Level-16.module.css";
 
 // Component hiển thị item tầng trong danh sách
 const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
+  const isCurrentLevel = level === 16; // Kiểm tra nếu là tầng 16
+
   return (
     <Link
       href={link}
@@ -15,7 +15,13 @@ const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
       style={{ textDecoration: "none" }}
     >
       <div className={styles.diamondShape}></div>
-      <Text className={styles.keyAreaItemText}>Level {level}</Text>
+      <Text
+        className={`${styles.keyAreaItemText} ${
+          isCurrentLevel ? styles.currentLevel : ""
+        }`}
+      >
+        Level {level}
+      </Text>
     </Link>
   );
 };
@@ -44,16 +50,13 @@ export default function ResidentialPage() {
 
   return (
     <SimpleGrid cols={3} spacing="xl" className={styles.simpleGrid}>
-      {/* Cột trái: hình ảnh tổng có polygon tương tác */}
-      <div className={styles.imageWrapper}>
+{/* Cột trái: hình ảnh tổng có polygon tương tác */}
+<div className={styles.imageWrapper}>
   <Image
     src="/assets/images/Levelimg/level-05-17.png"
     alt="Model"
     className={styles.image}
   />
-
-
-
 <svg
   xmlns="http://www.w3.org/2000/svg"
   width="594.067"
@@ -96,11 +99,6 @@ export default function ResidentialPage() {
       </text>
     </g>
   </Link>
-
-
-
-
-
   </svg>
   <svg
   xmlns="http://www.w3.org/2000/svg"
@@ -120,8 +118,6 @@ export default function ResidentialPage() {
     opacity="0.6"
     style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
   />
-
- 
 <svg width="100%" height="100%">
   <Link href="/path-to-your-destination">
     <polygon
@@ -144,14 +140,10 @@ export default function ResidentialPage() {
     style={{ pointerEvents: 'none' }}
   >
     <tspan x="500" dy="-10">1604</tspan>
-    <tspan x="500" dy="22" fontSize="14" fontWeight="normal">Sold</tspan>
+    <tspan x="500" dy="20" >Sold</tspan>
   </text>
 </svg>
-
-
 </svg>
-
-
   <svg
   xmlns="http://www.w3.org/2000/svg"
   width="437.321"
@@ -170,8 +162,6 @@ export default function ResidentialPage() {
     opacity="0.6"
     style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
   />
-
-
   <Link href="/residential/Level-16/Available">
     <svg width="100%" height="100%">
     <polygon
@@ -196,19 +186,8 @@ export default function ResidentialPage() {
   <tspan x={110} dy="-10">1601</tspan>
   <tspan x={110} dy="20">Available</tspan>
 </text>
-
     </svg>
-  </Link>
-
-
-
-
-
-
-
-
-
-  
+  </Link> 
 </svg>
 <svg
   xmlns="http://www.w3.org/2000/svg"
@@ -254,15 +233,8 @@ export default function ResidentialPage() {
     </text>
   </svg>
 </Link>
-
-
-
-
 </svg>
-
-
 </div>
-
       {/* Cột giữa: Status */}
       <div className={styles.keyAreass}>
         <div>
@@ -300,7 +272,6 @@ export default function ResidentialPage() {
         </div>
       </div>
 
-      {/* Cột phải: danh sách tầng */}
       <Stack className={styles.keyAreas}>
         <Text fw={500} className={styles.keyAreasTitle}>
           Level

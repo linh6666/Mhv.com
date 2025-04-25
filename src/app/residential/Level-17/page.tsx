@@ -8,6 +8,8 @@ import styles from "./Level-17.module.css";
 
 // Component hiển thị item tầng trong danh sách
 const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
+  const isCurrentLevel = level === 17; // Kiểm tra nếu là tầng 16
+
   return (
     <Link
       href={link}
@@ -15,10 +17,17 @@ const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
       style={{ textDecoration: "none" }}
     >
       <div className={styles.diamondShape}></div>
-      <Text className={styles.keyAreaItemText}>Level {level}</Text>
+      <Text
+        className={`${styles.keyAreaItemText} ${
+          isCurrentLevel ? styles.currentLevel : ""
+        }`}
+      >
+        Level {level}
+      </Text>
     </Link>
   );
 };
+
 
 export default function ResidentialPage() {
   const levels = [

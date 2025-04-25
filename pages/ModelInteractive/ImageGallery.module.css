@@ -126,3 +126,68 @@ border: 1px solid #0f2e4d;
   margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
   margin-left: 10px;
 }
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 700px;
+  height: 100vh;
+  background-color:  rgb(35 66 87 / var(--tw-bg-opacity, 1));
+  padding: 1.5rem;
+  /* z-index: 1000; */
+  transition: transform 0.3s ease;
+}
+
+.drawerClose {
+  position: absolute;
+  top: 155px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.drawerToggle {
+  position: fixed;
+  top: 40%;
+  right: 0;
+  background-color:  rgb(35 66 87 / var(--tw-bg-opacity, 1));
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.drawerContent {
+  margin-top: 3rem;
+}
+
+.keyAreaItem {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  gap: 8px;
+}
+
+@media (max-width: 768px) {
+  .drawer {
+    width: 100vw;
+    z-index: 2000; /* đảm bảo Drawer nổi trên ảnh */
+  }
+
+  .drawerClose {
+    top: 20px; /* điều chỉnh vị trí nút X cho mobile */
+    right: 16px;
+  }
+
+  .imageWrapper {
+    z-index: 1; /* đảm bảo không đè lên Drawer */
+  }
+}
+.openDrawer{
+  margin-top: 130px;
+}
+@media (max-width: 768px) {
+  .openDrawer {
+    margin-top: 0;
+  }
+}

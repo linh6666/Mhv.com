@@ -46,11 +46,14 @@
 }
 
 .aptNoBox {
-  background-color: #f59e0b; /* bg-amber-400 */
+  background-color: #bb8d38; /* bg-amber-400 */
   border: 1px solid black;
+      width: 117px;
+    height: 40px;
+    text-align: center;
   padding: 0.5rem 1rem;
   font-size: 1.125rem;
-  font-weight: 500;
+  
 }
 
 .statusRow,
@@ -70,10 +73,10 @@
 }
 
 .squareBox {
-  background-color: #f59e0b;
+  background-color: #bb8d38;
   border: 1px solid black;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -110,7 +113,7 @@
 
 .customButton {
   background-color: #294b61;
-  color: #f59e0b;
+  color: #bb8d38;
   font-weight: 500;
   width: 130px;
   height: 80px;
@@ -132,7 +135,7 @@
   color: #ffffff; /* text-white */
   border: 1px solid black;
   padding: 0.5rem 1.5rem; /* px-6 py-2 */
-  font-size: 1.125rem; /* text-lg */
+  font-size: 1rem; /* text-lg */
   font-weight: 500; /* font-medium */
 }
 
@@ -315,4 +318,19 @@ margin: 0 auto;
   flex-direction: column;
   gap: 1.5rem; /* tương đương với gap-6 trong Tailwind (24px) */
    max-width: 400px;
+}
+.diamondShape {
+  width: 20px;
+  height: 20px;
+border: 1px solid #0f2e4d;
+  transform: rotate(45deg);  /* Quay hình thành hình thoi */
+  margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
+  margin-left: 10px;
+}
+.keyAreaItem:hover .keyAreaItemText,
+.keyAreaItem:active .keyAreaItemText {
+  color: #bb8d38;
+}
+.currentLevel {
+  color: #bb8d38;
 }

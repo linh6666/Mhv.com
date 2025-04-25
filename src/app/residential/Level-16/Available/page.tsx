@@ -6,13 +6,26 @@ import styles from "./Available.module.css"; // Đảm bảo đường dẫn đ�
 
 // Định nghĩa component KeyAreaItem
 const KeyAreaItem = ({ level, link }: { level: number; link: string }) => {
+  const isCurrentLevel = level === 16; // Kiểm tra nếu là tầng 16
+
   return (
-    <Link href={link} className={styles.keyAreaItem} style={{ textDecoration: "none" }}>
+    <Link
+      href={link}
+      className={styles.keyAreaItem}
+      style={{ textDecoration: "none" }}
+    >
       <div className={styles.diamondShape}></div>
-      <Text className={styles.keyAreaItemText}>Level {level}</Text>
+      <Text
+        className={`${styles.keyAreaItemText} ${
+          isCurrentLevel ? styles.currentLevel : ""
+        }`}
+      >
+        Level {level}
+      </Text>
     </Link>
   );
 };
+
 
 function ApartmentCard() {
   const levels = [
@@ -88,10 +101,12 @@ function ApartmentCard() {
             </div>
 
             <div className={styles.buttonWrapper}>
-              <Button color="blue" className={styles.customButton}>
-                MORE INFO
-              </Button>
-            </div>
+  <Link href="/login">
+    <Button color="blue" className={styles.customButton}>
+      MORE INFO
+    </Button>
+  </Link>
+</div>
           </div>
 
           {/* Right side */}

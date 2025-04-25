@@ -391,4 +391,8 @@
     margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
     margin-left: 10px;
   }
+  .currentLevel {
+    color: #bb8d38;
+  }
+  
   
