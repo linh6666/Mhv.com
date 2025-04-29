@@ -68,6 +68,7 @@ export default function ResidentialPage() {
     id="Path_306"
     data-name="Path 306"
     transform="translate(-11035.813 -2973.112)"
+     className={styles.hoverGroup}
     fill="#84a7a1"
     fillOpacity="0.5"  // Giảm độ trong suốt chỉ với phần màu tô
   >
@@ -107,6 +108,7 @@ export default function ResidentialPage() {
   viewBox="0 0 851.831 273.479"
   className={styles.svgContainerr}
 >
+  
   <path
     id="Path_305"
     data-name="Path 305"
@@ -116,6 +118,8 @@ export default function ResidentialPage() {
     stroke="#294b61"
     strokeWidth="1"
     opacity="0.6"
+ 
+  
     style={{ mixBlendMode: 'multiply', isolation: 'isolate' }}
   />
 <svg width="100%" height="100%">
@@ -123,7 +127,8 @@ export default function ResidentialPage() {
     <polygon
       points="60,0 120,60 60,120 0,60"
       fill="#c0392b"
-      transform="translate(440, 85)"  // Lùi lên 30px
+      transform="translate(440, 85)" 
+       // Lùi lên 30px
       style={{ pointerEvents: 'all' }}
     />
   </Link>

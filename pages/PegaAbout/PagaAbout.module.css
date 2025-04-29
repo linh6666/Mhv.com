@@ -28,12 +28,14 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  
 }
 
 .titleBlock h2 {
   font-size: 3.75rem;
   font-weight: 300;
-  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
 }
 
 .titleBlock span {
@@ -172,7 +174,7 @@
 }
 
 .clientsList span {
-  color: #ffc107;
+  color: #bb8d38;
   font-weight: 600;
 }
 
@@ -229,7 +231,7 @@
 .bigLetter {
   font-size: 3rem;
   font-weight: 700;
-  color: #ffc107;
+  color: #bb8d38;
 }
 
 .lightText {
@@ -257,7 +259,7 @@
 }
 
 .highlight {
-  color: #ffc107;
+  color: #bb8d38;
   font-weight: 600;
 }
 .domesticImageWrapper {
@@ -270,4 +272,14 @@
   height: auto;
   border-radius: 8px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+.largeI {
+  color: #bb8d38;
+  font-size: 3rem;
+  font-weight: 700;
+}
+.largeA {
+  font-size: 3rem; /* Tăng kích thước chữ "A" */
+  font-weight: 700; /* Làm chữ "A" đậm */
+  color: #bb8d38; /* Thay đổi màu chữ nếu cần */
 }

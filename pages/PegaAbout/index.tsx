@@ -74,11 +74,19 @@ const AboutUs = () => {
     <section className={styles.heroSection}>
       <div className={styles.container}>
         {/* Left Title */}
-        <div className={styles.titleBlock}>
-          <h2>
-            A<span>Bout us</span>
-          </h2>
-        </div>
+           <div className={styles.clientsTitle}>
+  <h2>
+    <span className={styles.largeI}>A</span>bout
+   
+  
+  </h2>
+</div>
+        {/* <div className={styles.titleBlock}>
+  <h2>
+    <span className={styles.largeI}>A</span> Bout us
+  </h2>
+</div> */}
+
 
         {/* Right Text */}
         <div className={styles.contentBlock}>
@@ -151,13 +159,13 @@ const AboutUs = () => {
       {/* International Clients Section */}
       <div className={styles.clientsSection}>
         <div className={styles.clientsContainer}>
-          <div className={styles.clientsTitle}>
-            <h2>
-              International Clients
-              <br />
-              and Projects
-            </h2>
-          </div>
+        <div className={styles.clientsTitle}>
+  <h2>
+    <span className={styles.largeI}>I</span>nternational Clients
+    <br />
+    and Projects
+  </h2>
+</div>
           <ul className={styles.clientsList}>
             {clients.map((client, idx) => (
               <li key={idx}>
@@ -191,8 +199,9 @@ const AboutUs = () => {
             <h2>
               <span className={styles.bigLetter}>D</span>omestic{" "}
               <span className={styles.lightText}>Clients</span>
+                <span className={styles.lightText}>and Projects</span>
             </h2>
-            <p className={styles.lightText}>and Projects</p>
+          
           </div>
           <div className={styles.domesticRight}>
             <ul>

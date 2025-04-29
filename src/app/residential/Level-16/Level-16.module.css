@@ -355,32 +355,37 @@
 }
 
 .svgContainerr {
-
-      pointer-events: none;
+      
       width: 65.5%;
       height: auto;
       position: absolute;
       top: 5%;
       left: 34%;
   }
+  .svgContainerr path {
+  pointer-events: all; /* Đảm bảo các phần tử bên trong có thể nhận sự kiện chuột */
+}
   .svgContainer2 {
-
-    pointer-events: none;
     width: 33%;
     height: auto;
     position: absolute;
     top: 9%;
-    
+      pointer-events: auto;
+}
+.svgContainer2 path{
+  pointer-events: all;
 }
 .svgContainer3 {
-
-      pointer-events: none;
       width: 30%;
       height: auto;
       position: absolute;
       top: 43%;
       left: 24%;
+      pointer-events: auto;
   }
+  .svgContainer3 path{
+  pointer-events: all;
+}
 
 .diamondShape {
   width: 20px;
@@ -393,3 +398,28 @@ border: 1px solid #0f2e4d;
 .currentLevel {
   color: #bb8d38;
 }
+.hoverEffect {
+  transition: transform 0.3s ease; /* Hiệu ứng chuyển động */
+}
+
+.hoverEffect:hover {
+  transform: scale(1.05); /* Tăng kích thước khi hover */
+}
+
+.hoverGroup:hover {
+  fill: #c76b39; /* Thay đổi màu khi hover */
+}
+
+.hoverPolygon:hover {
+  fill: #ffcc00; /* Thay đổi màu cho polygon khi hover */
+}
+  .svgContainerr:hover path {
+      fill: #a7392f ; /* Màu khi hover */
+    }
+
+    .svgContainer2:hover path {
+      fill: #5c7f99; /* Màu khi hover */
+    }
+  .svgContainer3:hover path {
+      fill: #0f2e4d; /* Màu khi hover */
+    }

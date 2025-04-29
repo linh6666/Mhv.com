@@ -61,17 +61,17 @@ export default function ModelInteractive() {
 
           {/* Nội dung Drawer (ví dụ: key areas) */}
           <div className={styles.openDrawer}>
-
-<DrawerRight/>
+            <DrawerRight />
           </div>
-
-
-       
         </div>
       )}
 
       {/* ✅ Giao diện gốc: hình ảnh & key area (desktop) */}
-      <SimpleGrid cols={2} spacing="xl" className={styles.simpleGrid}>
+      <SimpleGrid
+        cols={2}
+        spacing="xl"
+        className={`${styles.simpleGrid} ${isDrawerOpen ? styles.shiftLeft : ''}`}
+      >
         <div
           className={styles.imageWrapper}
           onMouseMove={handleMouseMove}
@@ -111,35 +111,33 @@ export default function ModelInteractive() {
         </div>
 
         {/* Giao diện desktop vẫn giữ nguyên */}
-        {!isDrawerOpen && (
-          <Stack className={styles.keyAreas}>
-            <Text fw={500} className={styles.keyAreasTitle}>
-              Key Areas
-            </Text>
-            <Link
-              href="/residential"
-              className={styles.keyAreaItem}
-              style={{ textDecoration: "none" }}
-              onMouseEnter={() => handleMouseEnter(1)}
-              onMouseLeave={handleMouseLeave}
-              onTouchEnd={() => setHoveredFloor(null)}
-            >
-              <div className={styles.diamondShape}></div>
-              <Text className={styles.keyAreaItemText}>Residential</Text>
-            </Link>
-            <Link
-              href="/commercial"
-              className={styles.keyAreaItem}
-              style={{ textDecoration: "none" }}
-              onMouseEnter={() => handleMouseEnter(2)}
-              onMouseLeave={handleMouseLeave}
-              onTouchEnd={() => setHoveredFloor(null)}
-            >
-              <div className={styles.diamondShape}></div>
-              <Text className={styles.keyAreaItemText}>Commercial</Text>
-            </Link>
-          </Stack>
-        )}
+        <Stack className={styles.keyAreas}>
+          <Text fw={500} className={styles.keyAreasTitle}>
+            Key Areas
+          </Text>
+          <Link
+            href="/residential"
+            className={styles.keyAreaItem}
+            style={{ textDecoration: "none" }}
+            onMouseEnter={() => handleMouseEnter(1)}
+            onMouseLeave={handleMouseLeave}
+            onTouchEnd={() => setHoveredFloor(null)}
+          >
+            <div className={styles.diamondShape}></div>
+            <Text className={styles.keyAreaItemText}>Residential</Text>
+          </Link>
+          <Link
+            href="/commercial"
+            className={styles.keyAreaItem}
+            style={{ textDecoration: "none" }}
+            onMouseEnter={() => handleMouseEnter(2)}
+            onMouseLeave={handleMouseLeave}
+            onTouchEnd={() => setHoveredFloor(null)}
+          >
+            <div className={styles.diamondShape}></div>
+            <Text className={styles.keyAreaItemText}>Commercial</Text>
+          </Link>
+        </Stack>
       </SimpleGrid>
     </>
   );

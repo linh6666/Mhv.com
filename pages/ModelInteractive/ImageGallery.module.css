@@ -1,12 +1,14 @@
 .simpleGrid {
   padding: 40px;
   align-items: center;
+  transition: transform 0.3s ease;
 }
 
 .imageWrapper {
   position: relative;
   width: 100%;
   height: auto;
+  transition: transform 0.3s ease;
 }
 
 .image {
@@ -62,6 +64,7 @@
   align-items: flex-start;
   height: 100%;
   margin: 0 auto;
+  transition: transform 0.3s ease;
 }
 
 .keyAreasTitle {
@@ -88,6 +91,57 @@
   color: #bb8d38;
 }
 
+.diamondShape {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #0f2e4d;
+  transform: rotate(45deg);
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* Drawer */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 700px;
+  height: 100vh;
+  background-color: rgb(35 66 87 / var(--tw-bg-opacity, 1));
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.drawerToggle {
+  position: fixed;
+  top: 40%;
+  left: 0;
+  background-color: rgb(35 66 87 / var(--tw-bg-opacity, 1));
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.drawerClose {
+  position: absolute;
+  top: 155px;
+  left: 16px;
+  cursor: pointer;
+}
+
+.openDrawer {
+  margin-top: 130px;
+}
+
+/* Dịch chuyển sang trái khi Drawer mở */
+.shiftLeft {
+  transform: translateX(300px);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .simpleGrid {
     display: block;
@@ -112,81 +166,25 @@
     margin: 0 auto 20px auto;
   }
 
-  /* Cập nhật font-size cho overlayText ở bản mobile */
   .overlayText1,
   .overlayText2 {
-    font-size: 14px; /* Giảm font-size cho bản mobile */
+    font-size: 14px;
   }
-}
-  .diamondShape {
-  width: 20px;
-  height: 20px;
-border: 1px solid #0f2e4d;
-  transform: rotate(45deg);  /* Quay hình thành hình thoi */
-  margin-right: 10px;  /* Khoảng cách giữa hình thoi và văn bản */
-  margin-left: 10px;
-}
-.drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 700px;
-  height: 100vh;
-  background-color:  rgb(35 66 87 / var(--tw-bg-opacity, 1));
-  padding: 1.5rem;
-  /* z-index: 1000; */
-  transition: transform 0.3s ease;
-}
 
-.drawerClose {
-  position: absolute;
-  top: 155px;
-  right: 16px;
-  cursor: pointer;
-}
-
-.drawerToggle {
-  position: fixed;
-  top: 40%;
-  right: 0;
-  background-color:  rgb(35 66 87 / var(--tw-bg-opacity, 1));
-  padding: 10px;
-  cursor: pointer;
-  z-index: 1000;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-}
-
-.drawerContent {
-  margin-top: 3rem;
-}
-
-.keyAreaItem {
-  display: flex;
-  align-items: center;
-  margin: 8px 0;
-  gap: 8px;
-}
-
-@media (max-width: 768px) {
   .drawer {
     width: 100vw;
-    z-index: 2000; /* đảm bảo Drawer nổi trên ảnh */
+    z-index: 2000;
   }
 
   .drawerClose {
-    top: 20px; /* điều chỉnh vị trí nút X cho mobile */
-    right: 16px;
+    top: 20px;
+    left: 16px;
   }
 
   .imageWrapper {
-    z-index: 1; /* đảm bảo không đè lên Drawer */
+    z-index: 1;
   }
-}
-.openDrawer{
-  margin-top: 130px;
-}
-@media (max-width: 768px) {
+
   .openDrawer {
     margin-top: 0;
   }

@@ -31,7 +31,12 @@ export default function Header() {
           href="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <Image src="/logo-w.svg" alt="Logo" width={160} height={48} />
+         <Image
+  src="/logo-w.svg"
+  alt="Logo"
+ 
+  style={{ width: '160px', height: '50px' }}
+/>
         </Link>
 
         {/* Right section */}
@@ -47,12 +52,15 @@ export default function Header() {
           </div>
 
           {/* 🛒 Cart icon */}
+          <Link
+                  href="/cart">
           <button
             className="hidden md:inline-flex p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition"
             aria-label="Cart"
           >
             <IconShoppingCart size={22} />
           </button>
+          </Link>
 
           {/* ☰ Mobile toggle */}
           <button
@@ -164,12 +172,15 @@ export default function Header() {
                   searchOpen={searchOpen}
                   setSearchOpen={setSearchOpen}
                 />
+                <Link
+                  href="/cart">
                 <button
                   className="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition"
                   aria-label="Cart"
                 >
                   <IconShoppingCart size={22} />
                 </button>
+                </Link>
               </div>
               <Link href="/login">
                 <button
