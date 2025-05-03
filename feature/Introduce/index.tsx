@@ -35,7 +35,7 @@ export default function Introduce() {
                 design concept in the most persuasive manner...
               </p>
               <a
-                href="about.html"
+                href="/about"
                 className="inline-block bg-[#bb8d38] text-white px-6 py-2 rounded-[45px] hover:opacity-90 transition"
               >
                 Read More

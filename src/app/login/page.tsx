@@ -1,5 +1,5 @@
-"use client";
 
+"use client";
 import {
   Box,
   Button,
@@ -11,19 +11,39 @@ import {
   PasswordInput,
   Input,
 } from "@mantine/core";
+import { useForm} from '@mantine/form';
+
 import styles from "./LoginPage.module.css";
 
+
 export default function LoginPage() {
+  const form = useForm({
+    initialValues: {
+      emailOrPhone: "",
+      password: "",
+    },
+
+    validate: {
+      emailOrPhone: (value) =>
+        value.trim().length === 0 ? "This field is required" : null,
+      password: (value) =>
+        value.trim().length === 0 ? "Password is required" : null,
+    },
+  });
+
+  const handleSubmit = (values: typeof form.values) => {
+    console.log("Form values:", values);
+    // Gọi API login tại đây nếu cần
+  };
+
   return (
     <Box className={styles.container}>
       <Paper p="xl" className={styles.paper}>
         <Stack align="center" className={styles.stack}>
-          {/* Tiêu đề */}
           <Text size="xl" fw={700} className={styles.title}>
             WELCOME TO
           </Text>
 
-          {/* Logo */}
           <Image
             src="/assets/logo/LOGO_login.png"
             alt="MHV Logo"
@@ -32,7 +52,6 @@ export default function LoginPage() {
             className={styles.logo}
           />
 
-          {/* Dòng mô tả */}
           <Text size="sm" className={styles.description}>
             Kindly{" "}
             <a href="/register" className={styles.registerLink}>
@@ -43,39 +62,42 @@ export default function LoginPage() {
             If you are already registered, please login below.
           </Text>
 
-          {/* Form input */}
-          <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
-            <div>
-              <Input
-                type="text"
-                placeholder="Email/Mobile number"
-                classNames={{ input: styles.customInput }}
-              />
-            </div>
-            <div>
-              <PasswordInput
-                placeholder="Password"
-                classNames={{ input: styles.customInput }}
-              />
-            </div>
+          {/* Form login */}
+          <form onSubmit={form.onSubmit(handleSubmit)} style={{ width: '100%' }}>
+            <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
+              <div>
+                <Input
+                  type="text"
+                  placeholder="Email/Mobile number"
+                  classNames={{ input: styles.customInput }}
+                  {...form.getInputProps("emailOrPhone")}
+                />
+              </div>
+              <div>
+                <PasswordInput
+                  placeholder="Password"
+                  classNames={{ input: styles.customInput }}
+                  {...form.getInputProps("password")}
+                />
+              </div>
 
-            <Button
-              fullWidth
-              radius="md"
-              size="md"
-              mt="md"
-              className={styles.button}
-            >
-              LOGIN
-            </Button>
-          </SimpleGrid>
+              <Button
+                type="submit"
+                fullWidth
+                radius="md"
+                size="md"
+                mt="md"
+                className={styles.button}
+              >
+                LOGIN
+              </Button>
+            </SimpleGrid>
+          </form>
 
-          {/* Quên mật khẩu */}
           <a href="/forgot-password" className={styles.forgotText}>
-            <Text size="sm">Quên mật khẩu?</Text>
+            <Text size="sm">Forgot Password ?</Text>
           </a>
 
-          {/* Dòng hỗ trợ */}
           <Text size="xs" className={styles.termsText}>
             For additional assistance, please contact us at
             <br />

@@ -13,19 +13,43 @@ import {
 } from "@mantine/core";
 import styles from "./registerPage.module.css";
 import { useDisclosure } from "@mantine/hooks";
+import { useForm } from "@mantine/form";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [visible, { toggle }] = useDisclosure(false);
+
+  const form = useForm({
+    initialValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirmPassword: "",
+    },
+
+    validate: {
+      fullName: (value) => (value.trim().length === 0 ? "Full name is required" : null),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      phone: (value) => (value.trim().length < 9 ? "Invalid phone number" : null),
+      password: (value) => (value.length < 6 ? "Password must be at least 6 characters" : null),
+      confirmPassword: (value, values) =>
+        value !== values.password ? "Passwords do not match" : null,
+    },
+  });
+
+  const handleSubmit = (values: typeof form.values) => {
+    console.log("Form submitted:", values);
+    // Gửi API tại đây nếu cần
+  };
+
   return (
     <Box className={styles.container}>
       <Paper p="xl" className={styles.paper}>
         <Stack align="center" className={styles.stack}>
-          {/* Tiêu đề */}
           <Text size="xl" fw={700} className={styles.title}>
             WELCOME TO
           </Text>
 
-          {/* Logo */}
           <Image
             src="/assets/logo/LOGO_login.png"
             alt="MHV Logo"
@@ -34,62 +58,67 @@ export default function LoginPage() {
             className={styles.logo}
           />
 
-          {/* Dòng mô tả */}
           <Text size="md" className={styles.description}>
-            {/* <a href="/register" className={styles.registerLink}>
-              Register
-            </a>{" "} */}
             Enter your details and start journey with us.
           </Text>
 
-          {/* Form input */}
-          <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
-            <Input
-              type="text"
-              placeholder="Full name"
-              classNames={{ input: styles.customInput }}
-            />
+          <form onSubmit={form.onSubmit(handleSubmit)}>
+            <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
+              <Input
+                type="text"
+                placeholder="Full name"
+                classNames={{ input: styles.customInput }}
+                {...form.getInputProps("fullName")}
+              />
 
-            <Input
-              type="email"
-              placeholder="Email"
-              classNames={{ input: styles.customInput }}
-            />
-            <Input
-              type="tel"
-              placeholder="Mobile number"
-              classNames={{ input: styles.customInput }}
-            />
+              <Input
+                type="email"
+                placeholder="Email"
+                classNames={{ input: styles.customInput }}
+                {...form.getInputProps("email")}
+              />
 
-            <PasswordInput
-              placeholder="Password"
-              visible={visible}
-              onVisibilityChange={toggle}
-              classNames={{ input: styles.customInput }}
-            />
-            <PasswordInput
-              placeholder="Confirm password"
-              visible={visible}
-              onVisibilityChange={toggle}
-              classNames={{ input: styles.customInput }}
-            />
+              <Input
+                type="tel"
+                placeholder="Mobile number"
+                classNames={{ input: styles.customInput }}
+                {...form.getInputProps("phone")}
+              />
 
-            <Button
-              fullWidth
-              radius="md"
-              size="md"
-              mt="md"
-              className={styles.button}
-            >
-              REGISTER
-            </Button>
-          </SimpleGrid>
+              <PasswordInput
+                placeholder="Password"
+                visible={visible}
+                onVisibilityChange={toggle}
+                classNames={{ input: styles.customInput }}
+                {...form.getInputProps("password")}
+              />
+
+              <PasswordInput
+                placeholder="Confirm password"
+                visible={visible}
+                onVisibilityChange={toggle}
+                classNames={{ input: styles.customInput }}
+                {...form.getInputProps("confirmPassword")}
+              />
+
+              <Button
+                type="submit"
+                fullWidth
+                radius="md"
+                size="md"
+                mt="md"
+                className={styles.button}
+              >
+                REGISTER
+              </Button>
+            </SimpleGrid>
+          </form>
 
           <Text size="xs" className={styles.termsText}>
             Already have an account?{" "}
             <a href="/login" className={styles.phoneNumber}>
               Sign in
-            </a>{" "}
+            </a>
           </Text>
         </Stack>
       </Paper>

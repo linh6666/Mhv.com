@@ -5,15 +5,17 @@ import "@mantine/core/styles.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import AppContainer from "../../common/AppContainer";
+import Head from "next/head";
 
 export const metadata = {
-  title: "MHV App",
-  description: "App router section",
+  title: "Mô Hình Việt",
+  description: "Mô Hình Việt - Tiên Phong Sáng Tạo",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
+    
       <body>
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <Box
