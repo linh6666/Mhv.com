@@ -11,12 +11,16 @@ import {
   PasswordInput,
   Input,
 } from "@mantine/core";
-import styles from "./registerPage.module.css";
 import { useDisclosure } from "@mantine/hooks";
 import { useForm } from "@mantine/form";
+import { registerUser } from "../../../api/apiRegister";
+import { showNotification } from "@mantine/notifications";
+import { useRouter } from "next/navigation"; // ✅ App Router
+import styles from "./registerPage.module.css";
 
 export default function RegisterPage() {
   const [visible, { toggle }] = useDisclosure(false);
+  const router = useRouter(); // ✅ Khởi tạo router
 
   const form = useForm({
     initialValues: {
@@ -28,18 +32,76 @@ export default function RegisterPage() {
     },
 
     validate: {
-      fullName: (value) => (value.trim().length === 0 ? "Full name is required" : null),
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      phone: (value) => (value.trim().length < 9 ? "Invalid phone number" : null),
-      password: (value) => (value.length < 6 ? "Password must be at least 6 characters" : null),
+      fullName: (value) =>
+        value.trim().length === 0 ? "Full name is required" : null,
+    
+      email: (value) =>
+        value.trim().length === 0
+          ? "Email is required"
+          : !/^\S+@\S+\.\S+$/.test(value)
+          ? "Invalid email format"
+          : null,
+    
+      phone: (value) =>
+        value.trim().length === 0
+          ? "Phone number is required"
+          : !/^\d{10,}$/.test(value)
+          ? "Phone must be at least 10 digits"
+          : null,
+    
+      password: (value) =>
+        value.trim().length === 0
+          ? "Password is required"
+          : value.length < 8
+          ? "Password must be at least 8 characters"
+          : null,
+    
       confirmPassword: (value, values) =>
-        value !== values.password ? "Passwords do not match" : null,
-    },
+        value.trim().length === 0
+          ? "Confirm password is required"
+          : value.length < 8
+          ? "Confirm password must be at least 8 characters"
+          : value !== values.password
+          ? "Passwords do not match"
+          : null,
+    }
+    
   });
 
-  const handleSubmit = (values: typeof form.values) => {
-    console.log("Form submitted:", values);
-    // Gửi API tại đây nếu cần
+  const handleSubmit = async (values: typeof form.values) => {
+    try {
+      const res = await registerUser(
+        values.email,
+        values.fullName,
+        values.password,
+        values.confirmPassword,
+        values.phone
+      );
+      console.log("Registration successful:", res);
+
+      // ✅ Hiển thị thông báo thành công
+      showNotification({
+        title: "Thông báo",
+        message: "Đăng ký thành công!",
+        color: "green",
+        icon: <span>✔️</span>,
+      });
+
+      form.reset(); // ✅ Xóa dữ liệu form
+
+      setTimeout(() => {
+        router.push("/login"); // ✅ Chuyển về trang login
+      }, 1500);
+    } catch (error: any) {
+      console.error("Registration failed:", error.message);
+
+      // ✅ Hiển thị thông báo lỗi
+      showNotification({
+        title: "Lỗi",
+        message: error.message || "Đăng ký thất bại!",
+        color: "red",
+      });
+    }
   };
 
   return (

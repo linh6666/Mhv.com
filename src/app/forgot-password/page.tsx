@@ -10,9 +10,50 @@ import {
   SimpleGrid,
   Input,
 } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { useState } from "react";
+import { sendPasswordResetEmail } from "../../../api/apiSendemail"; // Nhập hàm gửi email
 import styles from "./forgotPassword.module.css";
 
-export default function forgotPassword() {
+export default function ForgotPassword() {
+  const [loading, setLoading] = useState(false); // Quản lý loading
+  const [message, setMessage] = useState(""); // Hiển thị thông báo
+
+  const form = useForm({
+    initialValues: {
+      email: "",
+    },
+    validate: {
+      email: (value: string) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(value) ? null : "Please enter a valid email address.";
+      },
+    },
+  });
+
+  const handleSubmit = async (values: { email: string }) => {
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await sendPasswordResetEmail(values.email);
+
+      // ✅ Cập nhật thông báo thành công
+      setMessage("Email sent successfully! Please check your email inbox.");
+
+      // ✅ Xóa toàn bộ dữ liệu trong form
+      form.reset();
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setMessage(error.message || "Failed to send email.");
+      } else {
+        setMessage("Failed to send email.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box className={styles.container}>
       <Paper p="xl" className={styles.paper}>
@@ -40,29 +81,45 @@ export default function forgotPassword() {
           </Text>
 
           {/* Form input */}
-          <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
-            <Input
-              type="email"
-              placeholder="Email"
-              classNames={{ input: styles.customInput }}
-            />
+          <form onSubmit={form.onSubmit(handleSubmit)}>
+            <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
+              <Input
+                type="email"
+                placeholder="Email"
+                {...form.getInputProps("email")}
+                classNames={{ input: styles.customInput }}
+              />
 
-            <Button
-              fullWidth
-              radius="md"
-              size="md"
-              mt="md"
-              className={styles.button}
+              <Button
+                fullWidth
+                radius="md"
+                size="md"
+                mt="md"
+                type="submit"
+                loading={loading}
+                className={styles.button}
+              >
+                RESET PASSWORD
+              </Button>
+            </SimpleGrid>
+          </form>
+
+          {/* ✅ Thông báo sau khi gửi */}
+          {message && (
+            <Text
+              size="sm"
+              color={message.startsWith("Failed") ? "red" : "green"}
+              mt="sm"
             >
-              RESET PASSWORD
-            </Button>
-          </SimpleGrid>
+              {message}
+            </Text>
+          )}
 
           <Text size="xs" className={styles.termsText}>
             Already have an account?{" "}
             <a href="/register" className={styles.phoneNumber}>
               Register
-            </a>{" "}
+            </a>
           </Text>
         </Stack>
       </Paper>

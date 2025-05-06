@@ -6,6 +6,9 @@ import { usePathname } from "next/navigation";
 import { Image } from "@mantine/core";
 import { IconShoppingCart } from "@tabler/icons-react";
 import Search from "../SearchBar/SearchBar";
+import LoginButton from "../LoginButton/LoginButton";
+
+
 
 export default function Header() {
   const pathname = usePathname();
@@ -101,14 +104,7 @@ export default function Header() {
           </button>
 
           {/* 🔐 Login desktop */}
-          <Link href="/login">
-            <button
-              type="button"
-              className="hidden md:inline-block text-white bg-[#bb8d38] hover:bg-[#e09e09] focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-[45px] text-sm px-6 py-3 text-center"
-            >
-              Log In
-            </button>
-          </Link>
+    <LoginButton />
         </div>
 
         {/* 🧭 Desktop nav */}
@@ -182,14 +178,8 @@ export default function Header() {
                 </button>
                 </Link>
               </div>
-              <Link href="/login">
-                <button
-                  type="button"
-                  className="text-white bg-[#bb8d38] hover:bg-[#e09e09] px-6 py-2 text-sm font-medium rounded-full"
-                >
-                  Log In
-                </button>
-              </Link>
+             <LoginButton isMobile />
+
             </div>
           </div>
         </div>

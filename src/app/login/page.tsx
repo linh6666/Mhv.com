@@ -1,5 +1,5 @@
-
 "use client";
+
 import {
   Box,
   Button,
@@ -11,29 +11,51 @@ import {
   PasswordInput,
   Input,
 } from "@mantine/core";
-import { useForm} from '@mantine/form';
+import { useForm } from "@mantine/form";
+import { loginUser } from "../../../api/apiLogin"; // Đảm bảo đúng đường dẫn
+import axios from "axios";
+import { useRouter } from "next/navigation"; // ✅ dùng để chuyển hướng
 
 import styles from "./LoginPage.module.css";
 
-
 export default function LoginPage() {
+  const router = useRouter(); // ✅ khởi tạo router để điều hướng
+
   const form = useForm({
     initialValues: {
-      emailOrPhone: "",
+      username: "",
       password: "",
     },
-
     validate: {
-      emailOrPhone: (value) =>
-        value.trim().length === 0 ? "This field is required" : null,
+      username: (value) =>
+        /^\S+@\S+\.\S+$/.test(value.trim()) ? null : "Invalid email format",
       password: (value) =>
-        value.trim().length === 0 ? "Password is required" : null,
+        value.trim().length >= 8 ? null : "Password must be at least 8 characters",
     },
   });
 
-  const handleSubmit = (values: typeof form.values) => {
+  const handleSubmit = async (values: typeof form.values) => {
     console.log("Form values:", values);
-    // Gọi API login tại đây nếu cần
+
+    try {
+      const response = await loginUser(values.username, values.password);
+      console.log("Login successful:", response);
+
+      // ✅ Lưu token vào localStorage
+      localStorage.setItem("access_token", response.access_token);
+
+      // ✅ Điều hướng sang trang chủ
+      router.push("/");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error(
+          "Login failed:",
+          error.response?.data?.detail || "Unknown error"
+        );
+      } else {
+        console.error("Login failed:", (error as Error).message || "Unknown error");
+      }
+    }
   };
 
   return (
@@ -63,14 +85,14 @@ export default function LoginPage() {
           </Text>
 
           {/* Form login */}
-          <form onSubmit={form.onSubmit(handleSubmit)} style={{ width: '100%' }}>
+          <form onSubmit={form.onSubmit(handleSubmit)} style={{ width: "100%" }}>
             <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
               <div>
                 <Input
                   type="text"
                   placeholder="Email/Mobile number"
                   classNames={{ input: styles.customInput }}
-                  {...form.getInputProps("emailOrPhone")}
+                  {...form.getInputProps("username")}
                 />
               </div>
               <div>
