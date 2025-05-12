@@ -13,9 +13,10 @@ export default function LoginButton({ isMobile = false }: LoginButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(prev => !prev);
-  
+
   const handleLogout = async () => {
-    logout(); // Gọi hàm logout
+    await logout(); // Gọi hàm logout
+    window.alert("Logout thành công"); // Hiển thị thông báo alert
   };
 
   return (

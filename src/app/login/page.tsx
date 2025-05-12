@@ -12,14 +12,14 @@ import {
   Input,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { loginUser } from "../../../api/apiLogin"; // Đảm bảo đúng đường dẫn
+import { loginUser } from "../../../api/apiLogin";
 import axios from "axios";
-import { useRouter } from "next/navigation"; // ✅ dùng để chuyển hướng
+import { useRouter } from "next/navigation";
 
 import styles from "./LoginPage.module.css";
 
 export default function LoginPage() {
-  const router = useRouter(); // ✅ khởi tạo router để điều hướng
+  const router = useRouter();
 
   const form = useForm({
     initialValues: {
@@ -35,17 +35,17 @@ export default function LoginPage() {
   });
 
   const handleSubmit = async (values: typeof form.values) => {
-    console.log("Form values:", values);
-
     try {
       const response = await loginUser(values.username, values.password);
-      console.log("Login successful:", response);
 
-      // ✅ Lưu token vào localStorage
-      localStorage.setItem("access_token", response.access_token);
+      if (response?.access_token) {
+        localStorage.setItem("access_token", response.access_token);
 
-      // ✅ Điều hướng sang trang chủ
-      router.push("/");
+        // ✅ Chuyển hướng về trang chủ và reload ngay
+        window.location.href = "/";  // Sử dụng window.location.href để chuyển và reload
+      } else {
+        console.error("Đăng nhập không có access_token");
+      }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         console.error(
@@ -84,7 +84,6 @@ export default function LoginPage() {
             If you are already registered, please login below.
           </Text>
 
-          {/* Form login */}
           <form onSubmit={form.onSubmit(handleSubmit)} style={{ width: "100%" }}>
             <SimpleGrid cols={1} spacing="sm" verticalSpacing="xs">
               <div>
@@ -130,3 +129,5 @@ export default function LoginPage() {
     </Box>
   );
 }
+
+
