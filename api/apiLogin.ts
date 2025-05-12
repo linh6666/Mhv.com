@@ -1,4 +1,3 @@
-// lib/api.ts
 import { BASE_API_FASTAPI } from "../config";
 import { API_ROUTE } from "../const/apiRouter"; // Đảm bảo import API_ROUTE
 
@@ -24,3 +23,5 @@ export async function loginUser(username: string, password: string) {
   const data = await res.json();
   return data;
 }
+
+

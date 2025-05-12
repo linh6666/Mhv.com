@@ -21,6 +21,8 @@ export default function Header() {
     { label: "INTERACTIVE", href: "/interactive" },
     { label: "ABOUT", href: "/about" },
     { label: "CONTACT", href: "/contact" },
+    { label: "SALE MANAGEMENT", href: "/Sale-Management" },
+    { label: "MY PROJECT", href: "/My-Project" },
   ];
 
   return (
@@ -28,7 +30,8 @@ export default function Header() {
       className="fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600"
       style={{ background: "linear-gradient(to bottom, #406c88, #294b61)" }}
     >
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-6 px-4">
+  <div className="max-w-[1500px] flex flex-wrap items-center justify-between mx-auto py-6 px-4">
+
         {/* Logo */}
         <Link
           href="/"

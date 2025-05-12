@@ -1,4 +1,4 @@
-// lib/api.ts
+
 import { BASE_API_FASTAPI } from "../config";
 import { API_ROUTE } from "../const/apiRouter"; // Đảm bảo đã khai báo REGISTER
 
