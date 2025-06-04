@@ -1,9 +1,9 @@
 import { Card, Image, Stack, Text, Button, TextInput, Select } from "@mantine/core";
 import { IconMapPin, IconBuilding, IconSearch } from '@tabler/icons-react';
-import styles from "./Sale.module.css";
+import styles from "./DetailInteractive.module.css";
 import Link from "next/link";
 
-export default function App() {
+export default function DetailInteractive () {
   return (
     <div className={styles.container}>
       {/* Search Section */}
@@ -42,22 +42,7 @@ export default function App() {
       {/* Card Grid */}
       <div className={styles.cardGrid}>
         {/* Card 1 */}
-        <Card shadow="sm" radius="md" withBorder padding="0" className={styles.card}>
-          <Image
-            src="https://img.heroui.chat/image/places?w=800&h=400&u=1"
-            height={160}
-            alt="BIM Hung Thang"
-            style={{ borderTopLeftRadius: "var(--mantine-radius-md)", borderTopRightRadius: "var(--mantine-radius-md)" }}
-          />
-          <Stack gap="xs" p="md" style={{ flexGrow: 1 }}>
-            <Text fw={500}>BIM Hung Thang</Text>
-            <Text size="sm" c="dimmed">Hung Thang, Ha Long, Quang Ninh, Vietnam</Text>
-            <Text size="sm" c="dimmed">6%, many villas and house to sell</Text>
-          </Stack>
-          <Button className={`${styles.baseButton} ${styles.primaryButton}`}>
-            Request Access
-          </Button>
-        </Card>
+       
 
         {/* Card 2 */}
         <Card shadow="sm" radius="md" withBorder padding="0" className={styles.card}>
@@ -74,7 +59,7 @@ export default function App() {
           </Stack>
             <Button
       component="a"
-      href="/DetailManagent"
+   href="/Detail"
       className={`${styles.baseButton} ${styles.primaryButton}`}
      // Mở liên kết ở tab mới (nếu cần)
     >
@@ -91,32 +76,22 @@ export default function App() {
             style={{ borderTopLeftRadius: "var(--mantine-radius-md)", borderTopRightRadius: "var(--mantine-radius-md)" }}
           />
           <Stack gap="xs" p="md" style={{ flexGrow: 1 }}>
-            <Text fw={500}>Highrise Melbourne</Text>
+            <Text fw={500}>ECO RETREAT</Text>
             <Text size="sm" c="dimmed">West Melbourne 2023</Text>
             <Text size="sm" c="dimmed">6%, including 24 floors, Beach front view</Text>
           </Stack>
-          <Button className={`${styles.baseButton} ${styles.primaryButton}`}>
+          <Button 
+               component="a"
+   href="/Detail"
+          className={`${styles.baseButton} ${styles.primaryButton}`}>
+
+
             Go To Project
           </Button>
         </Card>
 
         {/* Card 4 */}
-        <Card shadow="sm" radius="md" withBorder padding="0" className={styles.card}>
-          <Image
-            src="https://img.heroui.chat/image/places?w=800&h=400&u=4"
-            height={160}
-            alt="Park Hill"
-            style={{ borderTopLeftRadius: "var(--mantine-radius-md)", borderTopRightRadius: "var(--mantine-radius-md)" }}
-          />
-          <Stack gap="xs" p="md" style={{ flexGrow: 1 }}>
-            <Text fw={500}>Park Hill</Text>
-            <Text size="sm" c="dimmed">Nam Phu Quoc, Vietnam</Text>
-            <Text size="sm" c="dimmed">5%</Text>
-          </Stack>
-          <Button disabled className={`${styles.baseButton} ${styles.disabledButton}`}>
-            Wait for approval
-          </Button>
-        </Card>
+        
       </div>
     </div>
   );

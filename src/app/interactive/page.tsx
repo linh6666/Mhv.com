@@ -2,6 +2,7 @@
 import React from "react";
 import ModelInteractive from "../../../pages/ModelInteractive";
 import { Metadata } from "next";
+import DetailInteractive from "../../../pages/detailInteractive";
 
 export const metadata: Metadata = {
   title: "Tương tác mô hình 3D - Mô Hình Việt",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function Interactive() {
   return (
     <>
-      <ModelInteractive />
+      <DetailInteractive />
     </>
   );
 }

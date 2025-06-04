@@ -71,9 +71,14 @@ export default function App() {
             <Text size="sm" c="dimmed">Van Giang, Hung Yen, Vietnam</Text>
             <Text size="sm" c="dimmed">8%</Text>
           </Stack>
-          <Button className={`${styles.baseButton} ${styles.primaryButton}`}>
-            Go To Project
-          </Button>
+          <Button
+      component="a"
+      href="/DetailProject "
+      className={`${styles.baseButton} ${styles.primaryButton}`}
+     // Mở liên kết ở tab mới (nếu cần)
+    >
+      Go To Project
+    </Button>
         </Card>
 
         {/* Card 3 */}

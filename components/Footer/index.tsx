@@ -46,7 +46,7 @@ export default function Footer() {
         </div>
 
         {/* Hàng 2 đến 5: Thông tin liên hệ và địa chỉ */}
-        <div className="text-[10px] md:text-[19px] space-y-2">
+        <div className="text-[8px] md:text-[15px] space-y-2">
           <div>
             Hotline: +84 2436336688 | Tel: +84 889371188 | Email:
             info@mohinhviet.com
