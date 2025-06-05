@@ -48,16 +48,14 @@
 
 .buttonGroup {
   display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: flex-start; /* ✅ Đảm bảo button chỉ dài theo nội dung */
-      display: flex
-;
-   
-    align-items: center;
-
+  flex-wrap: wrap;
+  gap: 0.75rem; /* Khoảng cách giữa các nút */
+  justify-content: center; /* Căn giữa nội dung nếu không đủ 2 nút mỗi hàng */
 }
 
+.buttonGroup :global(button) {
+  width: calc(50% - 0.375rem); /* 2 cột với khoảng cách đều */
+}
 .button {
   background: #8B994A;
   color: white;
