@@ -4,3 +4,5 @@
 // export const BASE_API_AUTH_URL = process.env.NEXT_PUBLIC_API_AUTH_URL;
 // export const BASE_API_CAMMERA = process.env.NEXT_PUBLIC_CAMMERA;
 export const BASE_API_FASTAPI = process.env.NEXT_PUBLIC_FASTAPI_API!;
+export const BASE_API_AREA = process.env.NEXT_PUBLIC_API_AREA;
+

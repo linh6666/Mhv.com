@@ -1,6 +1,6 @@
 
 import axios, { AxiosResponse, AxiosError } from "axios";
-import {BASE_API_FASTAPI } from "../config";
+import {BASE_API_FASTAPI, BASE_API_AREA } from "../config";
 // import AuthService from "@/api/login/auth.service";
 
 const createApiInstance = (baseURL: string) => {
@@ -34,6 +34,7 @@ const createApiInstance = (baseURL: string) => {
 };
 
 const api = createApiInstance(BASE_API_FASTAPI || "");
+const apiarea = createApiInstance(BASE_API_AREA|| "");
 
 
-export { api};
+export { api,apiarea};

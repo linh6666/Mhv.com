@@ -82,7 +82,7 @@ export default function DetailInteractive () {
           </Stack>
           <Button 
                component="a"
-   href="/Detail"
+   href="/Detail2"
           className={`${styles.baseButton} ${styles.primaryButton}`}>
 
 
