@@ -6,8 +6,8 @@ import { Button } from "@mantine/core";
 import { IconChevronsLeft } from "@tabler/icons-react";
 import styles from "./sideArea.module.css";
 
-import { apiarea } from "../../../library/axios"; // điều chỉnh theo cấu trúc dự án của bạn
-import { API_ROUTE } from "../../../const/apiRouter"; // điều chỉnh theo cấu trúc dự án của bạn
+import { apiarea } from "../../../library/axios"; // Điều chỉnh đúng đường dẫn dự án
+import { API_ROUTE } from "../../../const/apiRouter"; // Điều chỉnh đúng đường dẫn dự án
 
 interface MenuItem {
   zone_name: string;
@@ -16,28 +16,33 @@ interface MenuItem {
 
 export const SideNavigation = () => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-    const handleGoBack = () => {
-    router.push("/Detail2"); // 👈 Đường dẫn trang muốn quay lại
+
+  const handleGoBack = () => {
+    router.push("/Detail2"); // Đường dẫn trang muốn quay lại
   };
 
   useEffect(() => {
     const fetchMenu = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const res = await apiarea.get(API_ROUTE.GET_AREA);
-        const records = res.data.records as MenuItem[];
+        const records = res.data.records as { zone_name: string }[];
 
-        // Bước 1: Chuẩn hóa tên phân khu (ví dụ: "Phân khu 1.9" -> "Phân khu 1")
+        // Chuẩn hóa tên phân khu (vd: "Phân khu 1.9" -> "Phân Khu 1")
         const normalized = records.map((item) => {
           const match = item.zone_name.match(/Phân khu\s*(\d+)/i);
           const zoneBase = match ? `Phân Khu ${match[1]}` : item.zone_name;
           return {
-            ...item,
             zone_name: zoneBase,
+            href: `/building-type/${encodeURIComponent(zoneBase)}`, // Tạo href mới
           };
         });
 
-        // Bước 2: Gộp các phân khu trùng tên
+        // Gộp các phân khu trùng tên
         const uniqueMap = new Map<string, MenuItem>();
         for (const item of normalized) {
           if (!uniqueMap.has(item.zone_name)) {
@@ -47,8 +52,11 @@ export const SideNavigation = () => {
 
         const uniqueZones = Array.from(uniqueMap.values());
         setMenuItems(uniqueZones);
-      } catch (error) {
-        console.error("Lỗi khi tải menu:", error);
+        setLoading(false);
+      } catch (err) {
+        console.error("Lỗi khi tải menu:", err);
+        setError("Không thể tải dữ liệu phân khu.");
+        setLoading(false);
       }
     };
 
@@ -64,19 +72,27 @@ export const SideNavigation = () => {
       <h2 className={styles.mainHeading}>Phân Khu</h2>
 
       <div className={styles.buttonGroup}>
-        {menuItems.map((item) => (
-          <NavigationButton key={item.zone_name} label={item.zone_name} href={item.href} />
+        {loading && <div>Đang tải...</div>}
+        {error && <div style={{ color: "red" }}>{error}</div>}
+        {!loading && !error && menuItems.map((item, idx) => (
+          <NavigationButton
+            key={`${item.zone_name}-${idx}`}
+            label={item.zone_name}
+            href={item.href}
+          />
         ))}
       </div>
 
       <div className={styles.bottomButtons}>
         <Button
-      variant="filled"
-      className={styles.bottomButton}
-      onClick={handleGoBack}
-    >
-      <IconChevronsLeft size={20} />
-    </Button>
+          variant="filled"
+          className={styles.bottomButton}
+          onClick={handleGoBack}
+          
+        >
+            <IconChevronsLeft size={20} />
+      
+        </Button>
       </div>
     </div>
   );
@@ -95,9 +111,8 @@ const NavigationButton = ({ label, href }: NavigationButtonProps) => {
   };
 
   return (
-    <Button className={styles.button} onClick={handleClick}>
+    <Button className={styles.button} onClick={handleClick} fullWidth>
       {label}
     </Button>
   );
 };
-
