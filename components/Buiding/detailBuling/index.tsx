@@ -1,14 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Button } from "@mantine/core";
-import {
-  IconSettings,
-  IconMessageCircle,
-  IconMoon,
-  IconChevronsLeft,
-} from "@tabler/icons-react";
+import { IconChevronsLeft } from "@tabler/icons-react";
 import styles from "./detailBuling.module.css";
 import { apiarea } from "../../../library/axios";
 import { API_ROUTE } from "../../../const/apiRouter";
@@ -42,10 +37,11 @@ interface GroupedZone {
   types: string[];
 }
 
-export const SideNavigation = () => {
-  const params = useParams();
-  const rawZoneParam = params && typeof params.zone === "string" ? params.zone : "";
-  const zoneParam = decodeURIComponent(rawZoneParam);
+interface SideNavigationProps {
+  zoneParam: string;
+}
+
+export const SideNavigation: React.FC<SideNavigationProps> = ({ zoneParam }) => {
   const router = useRouter();
 
   const handleGoBack = () => {
@@ -91,7 +87,7 @@ export const SideNavigation = () => {
         const grouped = filteredRecords.reduce((acc, record) => {
           const { zone_name, building_type } = record;
 
-          // ⚠️ Bỏ qua nếu rỗng, "NaN", null, undefined
+          // Bỏ qua nếu rỗng, "NaN", null, undefined
           if (!building_type || building_type.toLowerCase() === "nan") return acc;
 
           if (!acc[zone_name]) acc[zone_name] = new Set<string>();
@@ -120,10 +116,6 @@ export const SideNavigation = () => {
     fetchAreaDetail();
   }, [zoneParam]);
 
-  const toggleNightMode = () => {
-    console.log("Night mode toggled");
-  };
-
   return (
     <div className={styles.container} style={{ position: "relative" }}>
       <div className={styles.logoWrapper}>
@@ -145,7 +137,7 @@ export const SideNavigation = () => {
                 <NavigationButton
                   key={`${zone}-${type}`}
                   label={type}
-                  href={`/building-type/${encodeURIComponent(type)}`}
+                  href={`/house-type/${encodeURIComponent(type)}`}
                 />
               ))}
             </div>

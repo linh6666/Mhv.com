@@ -10,6 +10,7 @@ export const API_ROUTE = {
     LOGIN_USERNAME:"/api/v1/users/me",
     /////apiarea
     GET_AREA:"/192.168.100.101/zone/pk",
-    GET_AREA_DETAIL:"/192.168.100.101/zone/pk/Phân Khu "
-
+    GET_AREA_DETAIL:"/192.168.100.101/zone/pk/Phân Khu",
+   GET_HOUSE_TYPE_DETAIL: (zone: string, type: string) =>
+    `/192.168.100.101/zone/pk/${encodeURIComponent(zone)}/${encodeURIComponent(type)}`,
   };
