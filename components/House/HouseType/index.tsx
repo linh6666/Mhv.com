@@ -19,14 +19,17 @@ interface BuildingDetail {
   [key: string]: any;
 }
 
-const HouseTypePage: React.FC = () => {
+interface HouseTypePageProps {
+  zoneParam: string;
+  
+}
+
+const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam }) => {
   const params = useParams();
   const router = useRouter();
 
-  // Lấy zone và type từ URL và giải mã (decode) cho đúng
-  const zoneRaw = params?.zone ?? "";
+  // Lấy type từ URL param, nếu không có thì rỗng
   const typeRaw = params?.type ?? "";
-  const zone = decodeURIComponent(Array.isArray(zoneRaw) ? zoneRaw[0] : zoneRaw);
   const type = decodeURIComponent(Array.isArray(typeRaw) ? typeRaw[0] : typeRaw);
 
   const [buildingDetails, setBuildingDetails] = useState<BuildingDetail[]>([]);
@@ -34,12 +37,17 @@ const HouseTypePage: React.FC = () => {
   const [detailError, setDetailError] = useState<string>("");
 
   const handleGoBack = () => {
-  router.push(`/building-type/${encodeURIComponent(zone)}`);
+    router.push(`/building-type/${encodeURIComponent(zoneParam)}`);
+  };
+
+  // Khi click vào 1 loại nhà thì push URL mới với type tương ứng để cập nhật ảnh ở component cha
+  const handleSelectType = (selectedType: string) => {
+    router.push(`/building-type/${encodeURIComponent(zoneParam)}/${encodeURIComponent(selectedType)}`);
   };
 
   useEffect(() => {
-    async function fetchDetail(zoneParam: string, typeName: string) {
-      if (!zoneParam || !typeName) {
+    async function fetchDetail(zone: string, typeName: string) {
+      if (!zone || !typeName) {
         setDetailError("Thiếu tham số phân khu hoặc loại nhà");
         setBuildingDetails([]);
         return;
@@ -50,7 +58,7 @@ const HouseTypePage: React.FC = () => {
         setDetailError("");
         setBuildingDetails([]);
 
-        const apiUrl = API_ROUTE.GET_AREA_DETAIL_BY_TYPE(zoneParam, typeName);
+        const apiUrl = API_ROUTE.GET_AREA_DETAIL_BY_TYPE(zone, typeName);
         console.log("Gọi API URL:", apiUrl);
 
         const res = await apiarea.get(apiUrl);
@@ -70,8 +78,15 @@ const HouseTypePage: React.FC = () => {
       }
     }
 
-    fetchDetail(zone, type);
-  }, [zone, type]);
+    // Chỉ fetch nếu có type
+    if (type) {
+      fetchDetail(zoneParam, type);
+    } else {
+      // Nếu chưa có type thì reset data
+      setBuildingDetails([]);
+      setDetailError("");
+    }
+  }, [zoneParam, type]);
 
   return (
     <div className={styles.container} style={{ position: "relative" }}>
@@ -83,21 +98,22 @@ const HouseTypePage: React.FC = () => {
         <p>Đang tải chi tiết...</p>
       ) : detailError ? (
         <p style={{ color: "red" }}>{detailError}</p>
-      ) : buildingDetails.length === 0 ? (
+      ) : buildingDetails.length === 0 && type ? (
         <p>Không có loại nhà nào</p>
       ) : (
         <>
-           <h2 className={styles.mainHeading}>{type}</h2>
+          <h2 className={styles.mainHeading}>{type || "Chọn loại nhà"}</h2>
           <div className={styles.buttonGroup}>
             {buildingDetails.map((detail) => {
               const buildingType = detail.building_name?.trim() || "Không rõ loại nhà";
-              
-          
+
               return (
                 <Button
                   key={detail.id || buildingType}
                   className={styles.button}
                   title={detail.building_name}
+                  onClick={() => handleSelectType(buildingType)}
+                  color={buildingType === type ? "blue" : undefined}
                 >
                   {buildingType}
                 </Button>

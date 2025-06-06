@@ -2,42 +2,43 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-
-import HouseTypePage  from "./HouseType/index";
+import HouseTypePage from "./HouseType/index";
 import styles from "./House.module.css";
-
-const zoneImages: Record<string, string> = {
-  "Phân Khu 1": "/assets/Project/phan_khu_1.png",
-  "Phân Khu 2": "/assets/Project/phan_khu_2.png",
-  "Phân Khu 3": "/assets/Project/phan_khu_3.png",
-   "Phân Khu 4": "/assets/Project/phan_khu_4.png",
-    "Phân Khu 5": "/assets/Project/phan_khu_5.png",
-     "Phân Khu 6": "/assets/Project/phan_khu_6.png",
-      "Phân Khu 7": "/assets/Project/phan_khu_7.png",
-       "Phân Khu 8": "/assets/Project/phan_khu_8.png",
-        "Phân Khu 9": "/assets/Project/phan_khu_9.png",
-  // Thêm phân khu và ảnh tương ứng
-};
+import { slugify } from "../../library/slugify";
 
 export default function App() {
   const params = useParams();
-  const rawZoneParam = params && typeof params.zone === "string" ? params.zone : "";
-  const zoneParam = decodeURIComponent(rawZoneParam);
 
-  const imageUrl = zoneImages[zoneParam] || null;
+  // Nếu params null thì không render gì hoặc trả fallback
+  if (!params) {
+    return <div>Đang tải...</div>; // hoặc spinner
+  }
+
+  const rawZoneParam = typeof params.zone === "string" ? params.zone : "";
+  const rawTypeParam = typeof params.type === "string" ? params.type : "";
+
+  const zoneParam = decodeURIComponent(rawZoneParam);
+  const typeParam = decodeURIComponent(rawTypeParam);
+
+  const zoneSlug = slugify(zoneParam);
+  const typeSlug = typeParam ? slugify(typeParam) : zoneSlug;
+
+  const imageUrl = `/assets/giaodien/${zoneSlug}/${typeSlug}.png`;
 
   return (
     <div className={styles.container}>
       <div className={styles.mainContent}>
-        {imageUrl && (
-          <img
-            className={styles.image}
-            src={imageUrl}
-            alt={`Hình ảnh ${zoneParam}`}
-          />
-        )}
+        <img
+          className={styles.image}
+          src={imageUrl}
+          alt={`Hình ảnh ${zoneParam} - ${typeParam || "default"}`}
+          onError={(e) => {
+            const target = e.currentTarget;
+            target.onerror = null;
+            target.src = `/assets/giaodien/${zoneSlug}/${zoneSlug}.png`;
+          }}
+        />
       </div>
-
       <HouseTypePage zoneParam={zoneParam} />
     </div>
   );
