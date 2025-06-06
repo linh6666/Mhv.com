@@ -10,7 +10,12 @@ import { API_ROUTE } from "../../../const/apiRouter";
 
 interface BuildingDetail {
   id?: string;
-  description?: string;
+  building_name?: string;
+  building_type?: string;
+  zone?: string;
+  zone_name?: string;
+  amenity?: string;
+  amenity_type?: string;
   [key: string]: any;
 }
 
@@ -18,47 +23,48 @@ const HouseTypePage: React.FC = () => {
   const params = useParams();
   const router = useRouter();
 
-  // Lấy zone và type từ params URL
-  const zone = params?.zone ? (Array.isArray(params.zone) ? params.zone[0] : params.zone) : "";
-  const type = params?.type ? (Array.isArray(params.type) ? params.type[0] : params.type) : "";
+  // Lấy zone và type từ URL và giải mã (decode) cho đúng
+  const zoneRaw = params?.zone ?? "";
+  const typeRaw = params?.type ?? "";
+  const zone = decodeURIComponent(Array.isArray(zoneRaw) ? zoneRaw[0] : zoneRaw);
+  const type = decodeURIComponent(Array.isArray(typeRaw) ? typeRaw[0] : typeRaw);
 
-  const [buildingDetail, setBuildingDetail] = useState<BuildingDetail | null>(null);
+  const [buildingDetails, setBuildingDetails] = useState<BuildingDetail[]>([]);
   const [detailLoading, setDetailLoading] = useState<boolean>(false);
   const [detailError, setDetailError] = useState<string>("");
 
   const handleGoBack = () => {
-    router.push("/phan-khu");
+  router.push(`/building-type/${encodeURIComponent(zone)}`);
   };
 
   useEffect(() => {
     async function fetchDetail(zoneParam: string, typeName: string) {
       if (!zoneParam || !typeName) {
         setDetailError("Thiếu tham số phân khu hoặc loại nhà");
-        setBuildingDetail(null);
+        setBuildingDetails([]);
         return;
       }
+
       try {
         setDetailLoading(true);
         setDetailError("");
-        setBuildingDetail(null);
+        setBuildingDetails([]);
 
         const apiUrl = API_ROUTE.GET_AREA_DETAIL_BY_TYPE(zoneParam, typeName);
-
         console.log("Gọi API URL:", apiUrl);
 
         const res = await apiarea.get(apiUrl);
-
         console.log("Data response:", res.data);
 
         if (res.data.records && res.data.records.length > 0) {
-          setBuildingDetail(res.data.records[0]);
+          setBuildingDetails(res.data.records);
         } else {
           setDetailError("Không tìm thấy dữ liệu cho loại nhà này");
         }
       } catch (error) {
         console.error("Lỗi khi tải chi tiết:", error);
         setDetailError("Lỗi tải chi tiết");
-        setBuildingDetail(null);
+        setBuildingDetails([]);
       } finally {
         setDetailLoading(false);
       }
@@ -73,20 +79,33 @@ const HouseTypePage: React.FC = () => {
         <img src="/logo.png" alt="Eco Retreat Logo" className={styles.logoImage} />
       </div>
 
-      <div style={{ marginTop: 40 }}>
-        {detailLoading ? (
-          <p>Đang tải chi tiết...</p>
-        ) : detailError ? (
-          <p style={{ color: "red" }}>{detailError}</p>
-        ) : buildingDetail ? (
-          <div className={styles.detailContainer}>
-            <h3>Chi tiết loại nhà: {type}</h3>
-            <pre>{JSON.stringify(buildingDetail, null, 2)}</pre>
+      {detailLoading ? (
+        <p>Đang tải chi tiết...</p>
+      ) : detailError ? (
+        <p style={{ color: "red" }}>{detailError}</p>
+      ) : buildingDetails.length === 0 ? (
+        <p>Không có loại nhà nào</p>
+      ) : (
+        <>
+           <h2 className={styles.mainHeading}>{type}</h2>
+          <div className={styles.buttonGroup}>
+            {buildingDetails.map((detail) => {
+              const buildingType = detail.building_name?.trim() || "Không rõ loại nhà";
+              
+          
+              return (
+                <Button
+                  key={detail.id || buildingType}
+                  className={styles.button}
+                  title={detail.building_name}
+                >
+                  {buildingType}
+                </Button>
+              );
+            })}
           </div>
-        ) : (
-          <p>Không có chi tiết để hiển thị hoặc chưa chọn loại nhà</p>
-        )}
-      </div>
+        </>
+      )}
 
       <div className={styles.bottomButtons}>
         <Button variant="filled" className={styles.bottomButton} onClick={handleGoBack}>
@@ -98,4 +117,5 @@ const HouseTypePage: React.FC = () => {
 };
 
 export default HouseTypePage;
+
 

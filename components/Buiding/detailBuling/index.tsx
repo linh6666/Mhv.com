@@ -137,7 +137,8 @@ export const SideNavigation: React.FC<SideNavigationProps> = ({ zoneParam }) => 
                 <NavigationButton
                   key={`${zone}-${type}`}
                   label={type}
-                  href={`/house-type/${encodeURIComponent(type)}`}
+                href={`/house-type/${encodeURIComponent(zone)}/${encodeURIComponent(type)}`}
+
                 />
               ))}
             </div>

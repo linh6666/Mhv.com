@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 
-import SideNavigation  from "./HouseType/index";
+import HouseTypePage  from "./HouseType/index";
 import styles from "./House.module.css";
 
 const zoneImages: Record<string, string> = {
@@ -38,7 +38,7 @@ export default function App() {
         )}
       </div>
 
-      <SideNavigation zoneParam={zoneParam} />
+      <HouseTypePage zoneParam={zoneParam} />
     </div>
   );
 }

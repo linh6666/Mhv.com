@@ -11,6 +11,6 @@ export const API_ROUTE = {
     /////apiarea
     GET_AREA:"/192.168.100.101/zone/pk",
     GET_AREA_DETAIL:"/192.168.100.101/zone/pk/Phân Khu",
-   GET_HOUSE_TYPE_DETAIL: (zone: string, type: string) =>
-    `/192.168.100.101/zone/pk/${encodeURIComponent(zone)}/${encodeURIComponent(type)}`,
+ GET_AREA_DETAIL_BY_TYPE: (zone: string, buildingType: string) =>
+    `/192.168.100.101/zone/pk/${zone}/${buildingType}`,
   };

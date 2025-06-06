@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Building from "../../../../components/House/index";
+import Building from "../../../../../components/House/index";
 
 export const metadata: Metadata = {
   title: "Giỏ hàng | Mô Hình Việt",
