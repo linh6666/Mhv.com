@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "next/navigation";
 import HouseTypePage from "./HouseType/index";
 import styles from "./House.module.css";
@@ -8,20 +8,19 @@ import { slugify } from "../../library/slugify";
 
 export default function App() {
   const params = useParams();
+  const [selectedType, setSelectedType] = useState<string | null>(null);
 
-  // Nếu params null thì không render gì hoặc trả fallback
-  if (!params) {
-    return <div>Đang tải...</div>; // hoặc spinner
-  }
+  if (!params) return <div>Đang tải...</div>;
 
   const rawZoneParam = typeof params.zone === "string" ? params.zone : "";
   const rawTypeParam = typeof params.type === "string" ? params.type : "";
 
   const zoneParam = decodeURIComponent(rawZoneParam);
-  const typeParam = decodeURIComponent(rawTypeParam);
+  const typeParamFromURL = decodeURIComponent(rawTypeParam);
 
   const zoneSlug = slugify(zoneParam);
-  const typeSlug = typeParam ? slugify(typeParam) : zoneSlug;
+  const displayType = selectedType || typeParamFromURL || zoneSlug;
+  const typeSlug = slugify(displayType);
 
   const imageUrl = `/assets/giaodien/${zoneSlug}/${typeSlug}.png`;
 
@@ -31,7 +30,7 @@ export default function App() {
         <img
           className={styles.image}
           src={imageUrl}
-          alt={`Hình ảnh ${zoneParam} - ${typeParam || "default"}`}
+          alt={`Hình ảnh ${zoneParam} - ${displayType}`}
           onError={(e) => {
             const target = e.currentTarget;
             target.onerror = null;
@@ -39,7 +38,7 @@ export default function App() {
           }}
         />
       </div>
-      <HouseTypePage zoneParam={zoneParam} />
+      <HouseTypePage zoneParam={zoneParam} onSelectType={setSelectedType} />
     </div>
   );
 }

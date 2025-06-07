@@ -21,14 +21,13 @@ interface BuildingDetail {
 
 interface HouseTypePageProps {
   zoneParam: string;
-  
+  onSelectType?: (type: string) => void;
 }
 
-const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam }) => {
+const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam, onSelectType }) => {
   const params = useParams();
   const router = useRouter();
 
-  // Lấy type từ URL param, nếu không có thì rỗng
   const typeRaw = params?.type ?? "";
   const type = decodeURIComponent(Array.isArray(typeRaw) ? typeRaw[0] : typeRaw);
 
@@ -40,9 +39,9 @@ const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam }) => {
     router.push(`/building-type/${encodeURIComponent(zoneParam)}`);
   };
 
-  // Khi click vào 1 loại nhà thì push URL mới với type tương ứng để cập nhật ảnh ở component cha
   const handleSelectType = (selectedType: string) => {
-    router.push(`/building-type/${encodeURIComponent(zoneParam)}/${encodeURIComponent(selectedType)}`);
+    onSelectType?.(selectedType); // Gửi tên loại nhà lên component cha
+    // router.push(`/building-type/${encodeURIComponent(zoneParam)}/${encodeURIComponent(selectedType)}`);
   };
 
   useEffect(() => {
@@ -59,10 +58,7 @@ const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam }) => {
         setBuildingDetails([]);
 
         const apiUrl = API_ROUTE.GET_AREA_DETAIL_BY_TYPE(zone, typeName);
-        console.log("Gọi API URL:", apiUrl);
-
         const res = await apiarea.get(apiUrl);
-        console.log("Data response:", res.data);
 
         if (res.data.records && res.data.records.length > 0) {
           setBuildingDetails(res.data.records);
@@ -78,11 +74,9 @@ const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam }) => {
       }
     }
 
-    // Chỉ fetch nếu có type
     if (type) {
       fetchDetail(zoneParam, type);
     } else {
-      // Nếu chưa có type thì reset data
       setBuildingDetails([]);
       setDetailError("");
     }
@@ -133,5 +127,6 @@ const HouseTypePage: React.FC<HouseTypePageProps> = ({ zoneParam }) => {
 };
 
 export default HouseTypePage;
+
 
 
